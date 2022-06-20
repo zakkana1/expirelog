@@ -6,7 +6,8 @@
       name="upc"
       label="UPC"
       help="Product UPC"
-      validation="required"
+      validation="required|matches:/^[0-9]{12}/"
+      @change="updateField"
     />
     <FormKit
       type="text"
@@ -50,6 +51,7 @@
       validation="required"
     />
   </fieldset>
+  <pre wrap>{{ suppInfo }}</pre>
 </template>
 
 <script>
@@ -57,14 +59,23 @@
 
 export default {
   name: 'SupplementInfo',
-  setup () {
-    // const supplementExists = ref(false)
-    // const supplementInfo = ref({})
-  },
+  props: [
+    'suppInfo',
+    'suppExists'
+  ],
+  emits: ['field-updated'],
   data () {
     return {
 
     }
+  },
+  methods: {
+    updateField () {
+      this.$emit('field-updated')
+    }
+  },
+  watch: {
+
   }
 }
 </script>
