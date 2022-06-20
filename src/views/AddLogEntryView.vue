@@ -7,8 +7,9 @@
       submit-label="Add to Log"
       @submit="formHandler"
     >
-      <SupplementInfo :suppInfo="suppInfo" :suppExists="suppExists" @field-updated="fieldUpdated" />
+      <SupplementInfo :formData="formData" :suppInfo="suppInfo" :suppExists="suppExists" />
     </FormKit>
+    <pre wrap>{{ formData }}</pre>
   </div>
 </template>
 
@@ -28,9 +29,6 @@ export default {
   methods: {
     formHandler (supplementInfo) {
       console.log('Form Submitted...')
-    },
-    fieldUpdated () {
-      console.log('field updated with:')
     }
   }
 }
